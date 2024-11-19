@@ -21,7 +21,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        NoteTableView(viewModel: noteTableViewModel, saveNoteUseCase: saveNoteUseCase, updateNoteUseCase: updateNoteUesCase, deleteNoteUseCase: deleteNoteUesCase)
+        NoteTableView(viewModel: noteTableViewModel)
     }
 }
 

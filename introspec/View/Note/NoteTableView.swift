@@ -9,20 +9,10 @@ import SwiftUI
 
 struct NoteTableView: View {
     @StateObject var viewModel: NoteTableViewModel
-    private let saveNoteUseCase: SaveNoteUseCase
-    private let updateNoteUseCase: UpdateNoteUseCase
-    private let deleteNoteUseCase: DeleteNoteUseCase
     @State private var isNewNote = false
-    @State private var selectedNote: Note? = nil
     
-    public init(viewModel: NoteTableViewModel, saveNoteUseCase: SaveNoteUseCase, updateNoteUseCase: UpdateNoteUseCase,
-                deleteNoteUseCase: DeleteNoteUseCase, isNewNote: Bool = false, selectedNote: Note? = nil) {
+    public init(viewModel: NoteTableViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.saveNoteUseCase = saveNoteUseCase
-        self.updateNoteUseCase = updateNoteUseCase
-        self.deleteNoteUseCase = deleteNoteUseCase
-        self._isNewNote = State(initialValue: isNewNote)
-        self._selectedNote = State(initialValue: selectedNote)
     }
     
     var body: some View {
@@ -69,12 +59,8 @@ struct NoteTableView: View {
                 NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
                     viewModel.updateNote(note: note)
                 })
-                .onDisappear {
-                    selectedNote = nil
-                }
             }
             .onAppear {
-                selectedNote = nil
                 viewModel.getSavedNotes()
             }
         } detail: {
