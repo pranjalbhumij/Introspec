@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Introduction to Swift",
+        "content": "An introductory guide to Swift programming language. Swift is a powerful and intuitive language that makes iOS development faster and easier. This guide covers basics, syntax, and common patterns to help you get started quickly.",
+        "dateCreation": "2024-10-29T10:00:00Z",
+        "dateModified": "2024-10-29T12:00:00Z"
+    },
+    {
+        "id": 2,
+        "title": "Advanced iOS Architecture",
+        "content": "In-depth look at MVVM, VIPER, and other architectural patterns in iOS development. Understanding these patterns helps in building scalable and maintainable applications. This article covers pros and cons, use cases, and real-world implementation tips for each architecture.",
+        "dateCreation": "2024-10-28T09:30:00Z",
+        "dateModified": "2024-10-28T10:30:00Z"
+    },
+    {
+        "id": 3,
+        "title": "Getting Started with SwiftUI",
+        "content": "Basics of building user interfaces with SwiftUI framework. SwiftUI provides a declarative syntax, allowing developers to create UI elements easily and bind them to data. This guide introduces key concepts, like state management and modifiers, to help build interactive and responsive apps.",
+        "dateCreation": "2024-10-27T08:15:00Z",
+        "dateModified": "2024-10-27T09:00:00Z"
+    },
+    {
+        "id": 4,
+        "title": "Unit Testing in iOS",
+        "content": "Guide on setting up and writing unit tests for iOS apps using XCTest. Unit testing ensures code reliability by validating logic and functionality. This guide covers best practices, test case writing, and using XCTest features to create robust test suites for iOS applications.",
+        "dateCreation": "2024-10-26T14:45:00Z",
+        "dateModified": "2024-10-26T15:20:00Z"
+    },
+    {
+        "id": 5,
+        "title": "Multithreading in Swift",
+        "content": "An overview of multithreading concepts in Swift with examples. Multithreading helps in managing tasks concurrently, improving app performance. This guide explains GCD, OperationQueue, and how to handle background tasks effectively in Swift.",
+        "dateCreation": "2024-10-25T11:10:00Z",
+        "dateModified": "2024-10-25T11:45:00Z"
+    }
+]
+
