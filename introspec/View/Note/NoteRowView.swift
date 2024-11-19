@@ -9,15 +9,7 @@ import SwiftUI
 
 struct NoteRowView: View {
     @Binding var note: Note
-    private let deleteUseCase: DeleteNoteUseCase
-    //@Binding var id: Bool
-    @ObservedObject var viewModel: NoteTableViewModel
-    
-    init(note: Binding<Note>, deleteUseCase: DeleteNoteUseCase, viewModel: NoteTableViewModel) {
-        self._note = note
-        self.deleteUseCase = deleteUseCase
-        self.viewModel = viewModel
-    }
+    let onDelete: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,16 +21,10 @@ struct NoteRowView: View {
                 .foregroundColor(.secondaryText)
             
         }
-        .onAppear {
-            print (note.title)
-        }
         .frame(maxWidth: .infinity, alignment: .leading)
         .contextMenu {
             Button(role: .destructive) {
-                self.deleteUseCase.execute(id: self.note.id)
-                viewModel.notes.removeAll(where: { note in
-                    note.id == self.note.id
-                })
+                onDelete()
             } label: {
                 Text("Delete")
             }
@@ -47,6 +33,14 @@ struct NoteRowView: View {
     }
 }
 
-//#Preview {
-//    NoteRowView(note: ModelData().notes[0], id: .constant(false))
-//}
+#Preview {
+    let mockNote = Note(
+            id: "1",
+            title: "Sample Note Title",
+            content: "This is the content of the sample note.",
+            dateCreation: "2024-11-01",
+            dateModified: "2024-11-15"
+        )
+    return NoteRowView(note: .constant(mockNote), onDelete: {})
+}
+

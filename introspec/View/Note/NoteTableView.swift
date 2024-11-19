@@ -30,9 +30,8 @@ struct NoteTableView: View {
             List {
                 ForEach($viewModel.notes, id: \.id) { $note in
                     NavigationLink(value: note) {
-                        NoteRowView(note: $note, deleteUseCase: deleteNoteUseCase, viewModel: viewModel)
+                        NoteRowView(note: $note, onDelete: { viewModel.deleteNote(id: note.id) } )
                             .frame(height: 40)
-                            
                     }
                     .tag(note)
                 }
@@ -61,17 +60,15 @@ struct NoteTableView: View {
                         dateModified: Date().toString()
                     ),
                     isNewNote: true,
-                    viewModel: NoteEditorViewModel(
-                        saveNoteUseCase: self.saveNoteUseCase,
-                        updateNoteUseCase: self.updateNoteUseCase
-                    )
+                    onSave: { note in
+                        viewModel.saveNote(note: note)
+                    }
                 )
             }
             .navigationDestination(for: Note.self) {note in
-                NoteEditorView(note: note, isNewNote: false, viewModel: NoteEditorViewModel(
-                    saveNoteUseCase: self.saveNoteUseCase,
-                    updateNoteUseCase: self.updateNoteUseCase
-                ))
+                NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
+                    viewModel.updateNote(note: note)
+                })
                 .onDisappear {
                     selectedNote = nil
                 }

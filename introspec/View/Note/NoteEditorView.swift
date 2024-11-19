@@ -10,14 +10,16 @@ import SwiftUI
 struct NoteEditorView: View {
     @State var note: Note
     @State private var focus: Bool = false
-    @StateObject private var viewModel: NoteEditorViewModel
     var isNewNote: Bool
     @Environment(\.dismiss) var dismiss
+    var onSave: ((_ note: Note) -> Void)? = nil
+    var onUpdate: ((_ note: Note) -> Void)? = nil
     
-    init(note: Note, isNewNote: Bool, viewModel: NoteEditorViewModel) {
+    init(note: Note, isNewNote: Bool, onSave: ((_ note: Note) -> Void)? = nil, onUpdate: ((_ note: Note) -> Void)? = nil) {
         self.note = note
         self.isNewNote = isNewNote
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onSave = onSave
+        self.onUpdate = onUpdate
     }
     
     var body: some View {
@@ -42,9 +44,9 @@ struct NoteEditorView: View {
                 Button("Done") {
                     DispatchQueue.global(qos: .userInitiated).async {
                         if isNewNote {
-                            viewModel.save(note: note)
+                            onSave!(note)
                         } else {
-                            viewModel.update(note: note)
+                            onUpdate!(note)
                         }
                         focus = false
                         dismiss()

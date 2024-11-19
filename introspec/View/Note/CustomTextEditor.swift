@@ -48,7 +48,7 @@ struct CustomTextEditor: UIViewRepresentable {
             if index == 0 {
                     attributedText.addAttribute(
                         .font,
-                        value: UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize),
+                        value: UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title1).pointSize),
                         range: range
                     )
                 } else {
@@ -84,7 +84,6 @@ struct CustomTextEditor: UIViewRepresentable {
     }
 }
 
-// Extension to add a Done button to the keyboard
 extension UITextView {
     func addDoneButtonOnKeyboard() {
         let toolbar = UIToolbar()

@@ -11,21 +11,28 @@ import SwiftUI
 struct introspecApp: App {
     let noteTableViewModel: NoteTableViewModel
     let saveNoteUseCase: SaveNoteUseCase
-    let updateNoteUesCase: UpdateNoteUseCase
-    let deleteNoteUesCase: DeleteNoteUseCase
+    let updateNoteUseCase: UpdateNoteUseCase
+    let deleteNoteUseCase: DeleteNoteUseCase
+    let fetchNoteUseCase: FetchNotesUseCase
     
     init() {
         let context = CoreDataManager.shared(containerName: DBConstants.notesModel, dbPath: PathFactory.getDBPath(dbName: DBConstants.notesDb)).context
         let repository = CoreDataNoteRepository(context: context)
-        noteTableViewModel = NoteTableViewModel(fetchNotesUseCase: FetchNotesUseCaseImpl(repository: repository))
+        fetchNoteUseCase = FetchNotesUseCaseImpl(repository: repository)
         saveNoteUseCase = SaveNoteUseCaseImpl(repository: repository)
-        updateNoteUesCase = UpdateNoteUseCaseImpl(repository: repository)
-        deleteNoteUesCase = DeleteNoteUseCaseImpl(repository: repository)
+        updateNoteUseCase = UpdateNoteUseCaseImpl(repository: repository)
+        deleteNoteUseCase = DeleteNoteUseCaseImpl(repository: repository)
+        noteTableViewModel = NoteTableViewModel(fetchNotesUseCase: fetchNoteUseCase, 
+                                                deleteNoteUseCase: deleteNoteUseCase,
+                                                updateNoteUseCase: updateNoteUseCase,
+                                                saveNoteUseCase: saveNoteUseCase
+        )
+
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView(noteTableViewModel: noteTableViewModel, saveNoteUseCase: saveNoteUseCase, updateNoteUesCase: updateNoteUesCase,deleteNoteUseCase: deleteNoteUesCase)
+            ContentView(noteTableViewModel: noteTableViewModel, saveNoteUseCase: saveNoteUseCase, updateNoteUesCase: updateNoteUseCase,deleteNoteUseCase: deleteNoteUseCase)
         }
     }
 }

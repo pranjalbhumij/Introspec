@@ -32,7 +32,6 @@
 		D0A1303B2CD21A8F00E13B18 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */; };
 		D0A7BBC82CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7BBC72CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift */; };
 		D0A7BBCA2CECAA3E00AC3153 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7BBC92CECAA3E00AC3153 /* CustomTextEditor.swift */; };
-		D0D344C02CD242E10058467C /* NoteEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344BF2CD242E00058467C /* NoteEditorViewModel.swift */; };
 		D0D344C22CD244070058467C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C12CD244070058467C /* CoreDataManager.swift */; };
 		D0D344C52CD2477A0058467C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C42CD2477A0058467C /* Extensions.swift */; };
 		D0D344C72CD248510058467C /* NoteTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C62CD248510058467C /* NoteTableViewModel.swift */; };
@@ -67,7 +66,6 @@
 		D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		D0A7BBC72CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNoteUseCaseImpl.swift; sourceTree = "<group>"; };
 		D0A7BBC92CECAA3E00AC3153 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
-		D0D344BF2CD242E00058467C /* NoteEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewModel.swift; sourceTree = "<group>"; };
 		D0D344C12CD244070058467C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D0D344C42CD2477A0058467C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D0D344C62CD248510058467C /* NoteTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewModel.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 		D0A130292CD20CA700E13B18 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D0D344BF2CD242E00058467C /* NoteEditorViewModel.swift */,
 				D0D344C62CD248510058467C /* NoteTableViewModel.swift */,
 			);
 			path = ViewModel;
@@ -313,7 +310,6 @@
 				D0404A702CEB318F00768957 /* UpdateNoteUseCase.swift in Sources */,
 				D0D344C72CD248510058467C /* NoteTableViewModel.swift in Sources */,
 				D0A130342CD2111300E13B18 /* NoteEntity+CoreDataProperties.swift in Sources */,
-				D0D344C02CD242E10058467C /* NoteEditorViewModel.swift in Sources */,
 				D0A1302E2CD20DC300E13B18 /* NoteRowView.swift in Sources */,
 				D0A130062CD2073C00E13B18 /* introspecApp.swift in Sources */,
 				D0404A7B2CEB333B00768957 /* SaveNoteUseCaseImpl.swift in Sources */,
