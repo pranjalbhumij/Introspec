@@ -31,6 +31,7 @@
 		D0A130382CD2176A00E13B18 /* NoteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A130372CD2176A00E13B18 /* NoteTableView.swift */; };
 		D0A1303B2CD21A8F00E13B18 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */; };
 		D0A7BBC82CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7BBC72CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift */; };
+		D0A7BBCA2CECAA3E00AC3153 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7BBC92CECAA3E00AC3153 /* CustomTextEditor.swift */; };
 		D0D344C02CD242E10058467C /* NoteEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344BF2CD242E00058467C /* NoteEditorViewModel.swift */; };
 		D0D344C22CD244070058467C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C12CD244070058467C /* CoreDataManager.swift */; };
 		D0D344C52CD2477A0058467C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C42CD2477A0058467C /* Extensions.swift */; };
@@ -65,6 +66,7 @@
 		D0A130372CD2176A00E13B18 /* NoteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableView.swift; sourceTree = "<group>"; };
 		D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		D0A7BBC72CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNoteUseCaseImpl.swift; sourceTree = "<group>"; };
+		D0A7BBC92CECAA3E00AC3153 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		D0D344BF2CD242E00058467C /* NoteEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewModel.swift; sourceTree = "<group>"; };
 		D0D344C12CD244070058467C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D0D344C42CD2477A0058467C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				D0A1302D2CD20DC300E13B18 /* NoteRowView.swift */,
 				D0A130372CD2176A00E13B18 /* NoteTableView.swift */,
 				D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */,
+				D0A7BBC92CECAA3E00AC3153 /* CustomTextEditor.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				D0A7BBC82CEC81BC00AC3153 /* DeleteNoteUseCaseImpl.swift in Sources */,
 				D0404A792CEB32CC00768957 /* FetchNotesUseCaseImpl.swift in Sources */,
 				D0A130332CD2111300E13B18 /* NoteEntity+CoreDataClass.swift in Sources */,
+				D0A7BBCA2CECAA3E00AC3153 /* CustomTextEditor.swift in Sources */,
 				D0D344C22CD244070058467C /* CoreDataManager.swift in Sources */,
 				D0A130362CD211B400E13B18 /* Note.swift in Sources */,
 				D0404A702CEB318F00768957 /* UpdateNoteUseCase.swift in Sources */,

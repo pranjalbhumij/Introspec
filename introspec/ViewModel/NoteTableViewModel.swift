@@ -11,7 +11,6 @@ import CoreData
 class NoteTableViewModel: ObservableObject {
     @Published var notes: [Note] = []
     private let fetchNotesUseCase: FetchNotesUseCase
-    @Published var update: Bool = false
     
     init(fetchNotesUseCase: FetchNotesUseCase) {
         self.fetchNotesUseCase = fetchNotesUseCase
@@ -20,9 +19,8 @@ class NoteTableViewModel: ObservableObject {
     
     func getSavedNotes() {
         notes.removeAll()
-        notes = fetchNotesUseCase.execute()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.update.toggle()
-        })
+        DispatchQueue.main.async { [weak self] in
+            self?.notes = self?.fetchNotesUseCase.execute() ?? []
+        }
     }
 }

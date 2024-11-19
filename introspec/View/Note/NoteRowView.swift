@@ -22,7 +22,7 @@ struct NoteRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(note.title).font(.subheadline)
+                Text(note.title).font(.headline)
                     .foregroundColor(.primaryText)
             }
             Text(note.dateModified.formattedDate()).font(.caption)
