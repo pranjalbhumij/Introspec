@@ -15,19 +15,33 @@ struct NoteTableView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
+    var groupedNotes: [String: [Note]] {
+        groupNotesByDate(notes: viewModel.notes)
+    }
+    
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach($viewModel.notes, id: \.id) { $note in
-                    NavigationLink(value: note) {
-                        NoteRowView(note: $note, onDelete: { viewModel.deleteNote(id: note.id) } )
-                            .frame(height: 40)
+                ForEach(groupedNotes.keys.sorted(), id: \.self) { key in
+                    if let notes = groupedNotes[key] {
+                        Section(header: Text(key)
+                            .textCase(nil)
+                            .font(.headline)
+                            .foregroundColor(Color("primaryText"))
+                        ) {
+                            ForEach(notes, id: \.id) { note in
+                                NavigationLink(value: note) {
+                                    NoteRowView(note: .constant(note), onDelete: { viewModel.deleteNote(id: note.id) })
+                                        .frame(height: 45)
+                                }
+                                .tag(note)
+                            }
+                        }
                     }
-                    .tag(note)
                 }
                 
             }
-            .listRowSpacing(10)
+            //.listRowSpacing(10)
             .background(Color("offWhiteBackground"))
             .scrollContentBackground(.hidden)
             .navigationTitle("Notes")
@@ -68,6 +82,34 @@ struct NoteTableView: View {
         }
         .tint(Color("toolbarColor"))
     }
+    
+    func groupNotesByDate(notes: [Note]) -> [String: [Note]] {
+        var groupedNotes = [String: [Note]]()
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        for note in notes {
+            guard let noteDate = note.modifiedDate() else { continue } // Skip if date conversion fails
+            let noteDay = calendar.startOfDay(for: noteDate)
+            
+            if calendar.isDateInToday(noteDay) {
+                groupedNotes["Today", default: []].append(note)
+            } else if calendar.isDateInYesterday(noteDay) {
+                groupedNotes["Yesterday", default: []].append(note)
+            } else if let daysDifference = calendar.dateComponents([.day], from: noteDay, to: today).day {
+                if daysDifference <= 7 {
+                    groupedNotes["Previous 7 Days", default: []].append(note)
+                } else if daysDifference <= 30 {
+                    groupedNotes["Previous 30 Days", default: []].append(note)
+                } else {
+                    groupedNotes["Older", default: []].append(note)
+                }
+            }
+        }
+        print("Grouped Notes: \(groupedNotes)")
+        return groupedNotes
+    }
+    
 }
 
 
