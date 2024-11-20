@@ -10,7 +10,6 @@ import SwiftUI
 
 struct CustomTextEditor: UIViewRepresentable {
     @Binding var text: String
-    @Binding var isFocused: Bool
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -19,19 +18,12 @@ struct CustomTextEditor: UIViewRepresentable {
         textView.isSelectable = true
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = UIColor.clear
-        textView.addDoneButtonOnKeyboard()
         return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
         applyFormatting(to: uiView)
-
-        if isFocused && !uiView.isFirstResponder {
-            uiView.becomeFirstResponder()
-        } else if !isFocused && uiView.isFirstResponder {
-            uiView.resignFirstResponder()
-        }
     }
 
     func makeCoordinator() -> Coordinator {
@@ -52,11 +44,10 @@ struct CustomTextEditor: UIViewRepresentable {
                         range: range
                     )
                 } else {
-                    attributedText.addAttribute(
-                        .font,
-                        value: UIFont.preferredFont(forTextStyle: .body),
-                        range: range
-                    )
+                    attributedText.addAttributes([
+                                    .font: UIFont.preferredFont(forTextStyle: .body),
+                                    .foregroundColor: UIColor(named: "primaryText") ?? UIColor.black
+                                ], range: range)
                 }
         }
 
@@ -72,14 +63,6 @@ struct CustomTextEditor: UIViewRepresentable {
 
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
-        }
-
-        func textViewDidBeginEditing(_ textView: UITextView) {
-            parent.isFocused = true
-        }
-
-        func textViewDidEndEditing(_ textView: UITextView) {
-            parent.isFocused = false
         }
     }
 }

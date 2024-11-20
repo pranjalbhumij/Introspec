@@ -10,7 +10,25 @@
           "red" : "51"
         }
       },
-      "idiom" : "universal"
+      "idiom" : "iphone"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "51",
+          "green" : "51",
+          "red" : "51"
+        }
+      },
+      "idiom" : "iphone"
     },
     {
       "appearances" : [
@@ -28,7 +46,7 @@
           "red" : "255"
         }
       },
-      "idiom" : "universal"
+      "idiom" : "iphone"
     }
   ],
   "info" : {

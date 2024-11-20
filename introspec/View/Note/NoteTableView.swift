@@ -66,6 +66,7 @@ struct NoteTableView: View {
         } detail: {
             Text("Select a note")
         }
+        .tint(Color("toolbarColor"))
     }
 }
 

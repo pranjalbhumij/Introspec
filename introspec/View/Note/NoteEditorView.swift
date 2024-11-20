@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NoteEditorView: View {
     @State var note: Note
-    @State private var focus: Bool = false
     var isNewNote: Bool
     @Environment(\.dismiss) var dismiss
     var onSave: ((_ note: Note) -> Void)? = nil
@@ -28,13 +27,10 @@ struct NoteEditorView: View {
                 .ignoresSafeArea()
             
             VStack (alignment: .leading) {
-                CustomTextEditor(text: $note.content, isFocused: $focus)
+                CustomTextEditor(text: $note.content)
                                     .background(Color(.offWhiteBackground))
                                     .cornerRadius(8)
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .onAppear {
-                                        focus = true
-                                    }
             }
             .padding()
         }
@@ -48,7 +44,6 @@ struct NoteEditorView: View {
                         } else {
                             onUpdate!(note)
                         }
-                        focus = false
                         dismiss()
                     }
                 }

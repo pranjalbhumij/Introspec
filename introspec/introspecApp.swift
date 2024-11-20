@@ -22,12 +22,11 @@ struct introspecApp: App {
         saveNoteUseCase = SaveNoteUseCaseImpl(repository: repository)
         updateNoteUseCase = UpdateNoteUseCaseImpl(repository: repository)
         deleteNoteUseCase = DeleteNoteUseCaseImpl(repository: repository)
-        noteTableViewModel = NoteTableViewModel(fetchNotesUseCase: fetchNoteUseCase, 
+        noteTableViewModel = NoteTableViewModel(fetchNotesUseCase: fetchNoteUseCase,
                                                 deleteNoteUseCase: deleteNoteUseCase,
                                                 updateNoteUseCase: updateNoteUseCase,
                                                 saveNoteUseCase: saveNoteUseCase
         )
-
     }
     
     var body: some Scene {
@@ -35,4 +34,5 @@ struct introspecApp: App {
             ContentView(noteTableViewModel: noteTableViewModel, saveNoteUseCase: saveNoteUseCase, updateNoteUesCase: updateNoteUseCase,deleteNoteUseCase: deleteNoteUseCase)
         }
     }
+    
 }
