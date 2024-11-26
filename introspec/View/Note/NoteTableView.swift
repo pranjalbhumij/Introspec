@@ -21,60 +21,21 @@ struct NoteTableView: View {
     
     var body: some View {
         NavigationSplitView {
-            List() {
-                ForEach(groupedNotes.keys.sorted { key1, key2 in
-                    let order = ["Today", "Yesterday", "Previous 7 Days", "Previous 30 Days", "Older"]
-                    let index1 = order.firstIndex(of: key1) ?? order.count
-                    let index2 = order.firstIndex(of: key2) ?? order.count
-                    return index1 < index2
-                }, id: \.self) { key in
-                    if let notes = groupedNotes[key] {
-                        Section(header: Text(key)
-                            .textCase(nil)
-                            .font(.headline)
-                            .foregroundColor(Color("primaryText"))
-                        ) {
-                            ForEach(notes, id: \.id) { note in
-                                NavigationLink(value: note) {
-                                    NoteRowView(note: .constant(note), onDelete: { viewModel.deleteNote(id: note.id) })
-                                        .frame(height: 45)
-                                }
-                            }
-                        }
-                    }
+            VStack {
+                if groupedNotes.isEmpty {
+                    showEmptyScreen
+                }
+                else
+                {
+                    showList
                 }
             }
-            .background(Color("offWhiteBackground"))
-            .scrollContentBackground(.hidden)
             .navigationTitle("Notes")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        isNewNote = true
-                    }) {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
             .navigationDestination(isPresented: $isNewNote) {
-                NoteEditorView(
-                    note: Note(
-                        id: UUID().uuidString,
-                        title: "",
-                        content: "",
-                        dateCreation: Date().toString(),
-                        dateModified: Date().toString()
-                    ),
-                    isNewNote: true,
-                    onSave: { note in
-                        viewModel.saveNote(note: note)
-                    }
-                )
+                newNote
             }
             .navigationDestination(for: Note.self) { note in
-                NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
-                    viewModel.updateNote(note: note)
-                })
+                editNote(note)
             }
             .onAppear {
                 viewModel.getSavedNotes()
@@ -83,6 +44,72 @@ struct NoteTableView: View {
             Text("Select a note")
         }
         .tint(Color("toolbarColor"))
+    }
+    
+    private var showEmptyScreen: some View {
+        EmptyViewScreen(onAction: {
+            self.isNewNote = true
+         })
+    }
+    
+    private var showList: some View {
+        List() {
+            ForEach(groupedNotes.keys.sorted { key1, key2 in
+                let order = ["Today", "Yesterday", "Previous 7 Days", "Previous 30 Days", "Older"]
+                let index1 = order.firstIndex(of: key1) ?? order.count
+                let index2 = order.firstIndex(of: key2) ?? order.count
+                return index1 < index2
+            }, id: \.self) { key in
+                if let notes = groupedNotes[key] {
+                    Section(header: Text(key)
+                        .textCase(nil)
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(Color("primaryText"))
+                    ) {
+                        ForEach(notes, id: \.id) { note in
+                            NavigationLink(value: note) {
+                                NoteRowView(note: .constant(note), onDelete: { viewModel.deleteNote(id: note.id) })
+                                    .frame(height: 45)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .background(Color("offWhiteBackground"))
+        .scrollContentBackground(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isNewNote = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+    }
+    
+    private var newNote: some View {
+        NoteEditorView(
+            note: Note(
+                id: UUID().uuidString,
+                title: "",
+                content: "",
+                dateCreation: Date().toString(),
+                dateModified: Date().toString()
+            ),
+            isNewNote: true,
+            onSave: { note in
+                viewModel.saveNote(note: note)
+            }
+        )
+    }
+    
+    private func editNote(_ note: Note) -> some View {
+       return NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
+            viewModel.updateNote(note: note)
+        })
     }
     
     func groupNotesByDate(notes: [Note]) -> [String: [Note]] {
