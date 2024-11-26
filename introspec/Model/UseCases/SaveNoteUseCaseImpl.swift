@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class SaveNoteUseCaseImpl: SaveNoteUseCase {
     private let repository: NoteRepository
@@ -14,7 +15,8 @@ class SaveNoteUseCaseImpl: SaveNoteUseCase {
         self.repository = repository
     }
     
-    func execute(note: Note) {
+    func execute(note: Note) -> AnyPublisher<Void, Error> {
         repository.save(note: note)
+            .eraseToAnyPublisher()
     }
 }

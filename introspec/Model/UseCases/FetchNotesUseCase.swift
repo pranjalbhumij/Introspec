@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol FetchNotesUseCase {
-    func execute() -> [Note]
+    func execute() -> AnyPublisher<[Note],Error>
 }

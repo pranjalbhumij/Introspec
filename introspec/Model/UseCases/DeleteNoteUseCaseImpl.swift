@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class DeleteNoteUseCaseImpl: DeleteNoteUseCase {
     private let repository: CoreDataNoteRepository
@@ -14,8 +15,9 @@ class DeleteNoteUseCaseImpl: DeleteNoteUseCase {
         self.repository = repository
     }
     
-    func execute(id: String) {
+    func execute(id: String) -> AnyPublisher<Void, Error> {
         repository.delete(id: id)
+            .eraseToAnyPublisher()
     }
     
     

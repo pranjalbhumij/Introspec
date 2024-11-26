@@ -28,9 +28,10 @@ struct NoteEditorView: View {
             
             VStack (alignment: .leading) {
                 CustomTextEditor(text: $note.content)
-                                    .background(Color(.offWhiteBackground))
-                                    .cornerRadius(8)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(.offWhiteBackground))
+                    .cornerRadius(8)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityIdentifier("TextEditorView")
             }
             .padding()
         }
@@ -38,14 +39,12 @@ struct NoteEditorView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Done") {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if isNewNote {
-                            onSave!(note)
-                        } else {
-                            onUpdate!(note)
-                        }
-                        dismiss()
+                    if isNewNote {
+                        onSave!(note)
+                    } else {
+                        onUpdate!(note)
                     }
+                    dismiss()
                 }
             }
         }

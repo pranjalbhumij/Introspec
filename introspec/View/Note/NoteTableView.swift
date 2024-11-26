@@ -21,8 +21,13 @@ struct NoteTableView: View {
     
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(groupedNotes.keys.sorted(), id: \.self) { key in
+            List() {
+                ForEach(groupedNotes.keys.sorted { key1, key2 in
+                    let order = ["Today", "Yesterday", "Previous 7 Days", "Previous 30 Days", "Older"]
+                    let index1 = order.firstIndex(of: key1) ?? order.count
+                    let index2 = order.firstIndex(of: key2) ?? order.count
+                    return index1 < index2
+                }, id: \.self) { key in
                     if let notes = groupedNotes[key] {
                         Section(header: Text(key)
                             .textCase(nil)
@@ -34,14 +39,11 @@ struct NoteTableView: View {
                                     NoteRowView(note: .constant(note), onDelete: { viewModel.deleteNote(id: note.id) })
                                         .frame(height: 45)
                                 }
-                                .tag(note)
                             }
                         }
                     }
                 }
-                
             }
-            //.listRowSpacing(10)
             .background(Color("offWhiteBackground"))
             .scrollContentBackground(.hidden)
             .navigationTitle("Notes")
@@ -69,7 +71,7 @@ struct NoteTableView: View {
                     }
                 )
             }
-            .navigationDestination(for: Note.self) {note in
+            .navigationDestination(for: Note.self) { note in
                 NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
                     viewModel.updateNote(note: note)
                 })
@@ -89,7 +91,7 @@ struct NoteTableView: View {
         let today = calendar.startOfDay(for: Date())
         
         for note in notes {
-            guard let noteDate = note.modifiedDate() else { continue } // Skip if date conversion fails
+            guard let noteDate = note.modifiedDate() else { continue }
             let noteDay = calendar.startOfDay(for: noteDate)
             
             if calendar.isDateInToday(noteDay) {
@@ -106,8 +108,27 @@ struct NoteTableView: View {
                 }
             }
         }
-        print("Grouped Notes: \(groupedNotes)")
-        return groupedNotes
+
+        // Sort notes within each group by date and time (descending)
+        for key in groupedNotes.keys {
+            groupedNotes[key]?.sort { note1, note2 in
+                guard let date1 = note1.modifiedDate(), let date2 = note2.modifiedDate() else {
+                    return false
+                }
+                return date1 > date2 // Descending order
+            }
+        }
+        
+        // Maintain the desired order of groups
+        var orderedGroupedNotes = [String: [Note]]()
+        let sortedOrder = ["Today", "Yesterday", "Previous 7 Days", "Previous 30 Days", "Older"]
+        for key in sortedOrder {
+            if let notesForKey = groupedNotes[key] {
+                orderedGroupedNotes[key] = notesForKey
+            }
+        }
+        
+        return orderedGroupedNotes
     }
     
 }

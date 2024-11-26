@@ -1,0 +1,11 @@
+{
+    "obfuscations": {
+        "opaque_predicate": true,
+        "string_encryption": true,
+        "control_flow_flattening": true
+    },
+    "excluded": [
+        "main",
+        "helper_function"
+    ]
+}

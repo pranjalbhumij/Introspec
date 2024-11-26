@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol NoteRepository {
-    func fetchNotes() -> [Note]
-    func save(note: Note)
-    func update(note: Note)
-    func delete(id: String)
+    func fetchNotes() -> AnyPublisher<[Note], Error>
+    func save(note: Note) -> AnyPublisher<Void, Error>
+    func update(note: Note) -> AnyPublisher<Void, Error>
+    func delete(id: String) -> AnyPublisher<Void, Error>
 }

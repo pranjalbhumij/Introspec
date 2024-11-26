@@ -22,11 +22,11 @@ extension String {
 
 
 extension String {
-    func toDate(format: String = "yyyy-MM-dd") -> Date? {
+    func toDate(format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.locale = Locale.current
+        dateFormatter.timeZone = TimeZone.current
         return dateFormatter.date(from: self)
     }
     
@@ -41,11 +41,11 @@ extension Date {
     /// Converts a Date to a String based on the specified format
     /// - Parameter format: The desired date format (default is "yyyy-MM-dd")
     /// - Returns: A string representation of the date
-    func toString(format: String = "yyyy-MM-dd") -> String {
+    func toString(format: String = "yyyy-MM-dd HH:mm:ss") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Ensures consistent formatting
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set timezone if needed (e.g., UTC)
+        dateFormatter.locale = Locale.current
+        dateFormatter.timeZone = TimeZone.current
         return dateFormatter.string(from: self)
     }
 }

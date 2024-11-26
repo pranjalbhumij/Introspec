@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol DeleteNoteUseCase {
-    func execute(id: String)
+    func execute(id: String) -> AnyPublisher<Void, Error>
 }

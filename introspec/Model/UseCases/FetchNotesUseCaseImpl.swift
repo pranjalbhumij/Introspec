@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class FetchNotesUseCaseImpl: FetchNotesUseCase {
     private let repository: NoteRepository
@@ -14,7 +15,8 @@ class FetchNotesUseCaseImpl: FetchNotesUseCase {
         self.repository = repository
     }
     
-    func execute() -> [Note] {
-        return repository.fetchNotes()
+    func execute() -> AnyPublisher<[Note], Error> {
+        repository.fetchNotes()
+            .eraseToAnyPublisher()
     }
 }

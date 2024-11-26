@@ -29,7 +29,6 @@ struct NoteRowView: View {
                 Text("Delete")
             }
         }
-        
     }
 }
 

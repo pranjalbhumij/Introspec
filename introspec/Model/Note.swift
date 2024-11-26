@@ -18,7 +18,8 @@ struct Note: Decodable, Identifiable, Hashable {
 extension Note {
     func modifiedDate() -> Date? {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd" // Adjust to match your date format
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss" 
         return formatter.date(from: self.dateModified)
     }
 }
+

@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  introspec
+//
+//  Created by Baba Yaga on 25/11/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+OTHER_CFLAGS = $(inherited) -fpass-plugin=/Users/pranjalbhumij/Projects/O-MVLL/o-mvll/build/libOMVLL.dylib
+OTHER_CPLUSPLUSFLAGS = $(inherited) -fpass-plugin=/Users/pranjalbhumij/Projects/O-MVLL/o-mvll/build/libOMVLL.dylib

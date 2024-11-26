@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class NoteTableViewModel: ObservableObject {
     @Published var notes: [Note] = []
@@ -14,6 +15,7 @@ class NoteTableViewModel: ObservableObject {
     private let deleteNoteUseCase: DeleteNoteUseCase
     private let updateNoteUseCase: UpdateNoteUseCase
     private let saveNoteUseCase: SaveNoteUseCase
+    private var cancellable = Set<AnyCancellable>()
     
     init(fetchNotesUseCase: FetchNotesUseCase, deleteNoteUseCase: DeleteNoteUseCase, updateNoteUseCase: UpdateNoteUseCase, saveNoteUseCase: SaveNoteUseCase) {
         self.fetchNotesUseCase = fetchNotesUseCase
@@ -25,28 +27,55 @@ class NoteTableViewModel: ObservableObject {
     
     func getSavedNotes() {
         notes.removeAll()
-        DispatchQueue.main.async { [weak self] in
-            self?.notes = self?.fetchNotesUseCase.execute() ?? []
-        }
+        self.fetchNotesUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .failure(_) = completion {
+                    self?.notes = []
+                }
+            }, receiveValue: { [weak self] value in
+                self?.notes = value
+            })
+            .store(in: &cancellable)
     }
     
     func deleteNote(id: String) {
-        deleteNoteUseCase.execute(id: id)
-        self.notes.removeAll(where: { note in
-            note.id == id
-        })
+        self.deleteNoteUseCase.execute(id: id)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .finished = completion {
+                    self?.notes.removeAll(where: { note in
+                        note.id == id
+                    })
+                }
+            }, receiveValue: { _ in })
+            .store(in: &cancellable)
     }
     
     func saveNote(note: Note) {
-        saveNoteUseCase.execute(note: note)
-        notes.append(note)
+        self.saveNoteUseCase.execute(note: note)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .finished = completion {
+                    self?.notes.append(note)
+                }
+            }, receiveValue: { _ in })
+            .store(in: &cancellable)
+        
     }
     
     func updateNote(note: Note) {
-        updateNoteUseCase.execute(note: note)
-        self.notes.removeAll(where: { note in
-            note.id == note.id
-        })
-        self.notes.append(note)
+        self.updateNoteUseCase.execute(note: note)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {[weak self] completion in
+                if case .finished = completion {
+                    self?.notes.removeAll(where: { note in
+                        note.id == note.id
+                    })
+                    self?.notes.append(note)
+                }
+            }, receiveValue: { _ in })
+            .store(in: &cancellable)
+        
     }
 }

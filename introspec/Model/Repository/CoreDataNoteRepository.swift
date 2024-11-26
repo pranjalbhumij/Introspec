@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 class CoreDataNoteRepository: NoteRepository {
     
@@ -16,56 +17,58 @@ class CoreDataNoteRepository: NoteRepository {
         self.context = context
     }
     
-    func fetchNotes() -> [Note] {
-        let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        do {
-            let results = try context.fetch(request)
-            return results.map { $0.toNote() }
-        } catch {
-            print("Error fetching notes: \(error)")
-            return []
+    func fetchNotes() -> AnyPublisher<[Note], Error> {
+        Future { [weak self] promise in
+            let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            promise(Result {
+                let results = try self!.context.fetch(request)
+                return results.map { $0.toNote() }
+            })
         }
+        .eraseToAnyPublisher()
     }
     
-    func save(note: Note) {
-        let noteEntity = NoteEntity(context: context)
-        noteEntity.update(with: note, context: context)
-        saveContext()
+    func save(note: Note) -> AnyPublisher<Void, Error> {
+        Future { [weak self] promise in
+            let noteEntity = NoteEntity(context: self!.context)
+            noteEntity.update(with: note, context: self!.context)
+            promise(Result { try self!.saveContext() })
+        }
+        .eraseToAnyPublisher()
     }
     
-    func update(note: Note) {
-        let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", note.id)
-        do {
-            if let noteEntity = try context.fetch(fetchRequest).first {
-                noteEntity.update(with: note, context: context)
-                saveContext()
-            }
-        } catch {
-            print("Error updating note: \(error)")
+    func update(note: Note) -> AnyPublisher<Void, Error>  {
+        Future { [weak self] promise in
+            let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", note.id)
+            promise(Result {
+                if let noteEntity = try self!.context.fetch(fetchRequest).first {
+                    noteEntity.update(with: note, context: self!.context)
+                    try self!.saveContext()
+                }
+            })
         }
+        .eraseToAnyPublisher()
     }
     
-    func delete(id: String) {
-        let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        do {
-            if let noteEntity = try context.fetch(fetchRequest).first {
-                context.delete(noteEntity)
-                saveContext()
-            }
-        } catch {
-            print("Error deleting note: \(error)")
+    func delete(id: String) -> AnyPublisher<Void, Error> {
+        Future { [weak self] promise in
+            let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+            promise(Result {
+                if let noteEntity = try self!.context.fetch(fetchRequest).first {
+                    self!.context.delete(noteEntity)
+                    try self!.saveContext()
+                    promise(.success(()))
+                }
+            })
         }
+        .eraseToAnyPublisher()
     }
         
-    private func saveContext() {
+    private func saveContext() throws {
         if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                print("Error saving context: \(error)")
-            }
+            try context.save()
         }
     }
 }

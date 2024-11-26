@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D02FBD612CF4435200BFB0E0 /* omvll_config.json in Resources */ = {isa = PBXBuildFile; fileRef = D02FBD602CF4435200BFB0E0 /* omvll_config.json */; };
+		D02FBD632CF478AD00BFB0E0 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */; };
+		D03EF4732CEF0F0900CCCD38 /* omvll.yml in Resources */ = {isa = PBXBuildFile; fileRef = D03EF4712CEF0F0900CCCD38 /* omvll.yml */; };
+		D03EF4742CEF0F0900CCCD38 /* omvil-config.py in Resources */ = {isa = PBXBuildFile; fileRef = D03EF4722CEF0F0900CCCD38 /* omvil-config.py */; };
 		D0404A6C2CEB317400768957 /* FetchNotesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0404A6B2CEB317400768957 /* FetchNotesUseCase.swift */; };
 		D0404A6E2CEB318200768957 /* SaveNoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0404A6D2CEB318200768957 /* SaveNoteUseCase.swift */; };
 		D0404A702CEB318F00768957 /* UpdateNoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0404A6F2CEB318F00768957 /* UpdateNoteUseCase.swift */; };
@@ -37,9 +41,25 @@
 		D0D344C72CD248510058467C /* NoteTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C62CD248510058467C /* NoteTableViewModel.swift */; };
 		D0D344C92CD24A710058467C /* DBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344C82CD24A710058467C /* DBConstants.swift */; };
 		D0D344CC2CD24AEA0058467C /* PathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D344CB2CD24AEA0058467C /* PathFactory.swift */; };
+		D0DF9FE12CEE096400719C62 /* introspecUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DF9FE02CEE096400719C62 /* introspecUITestsLaunchTests.swift */; };
+		D0F8D6492CEE0DAC00A4B9E0 /* NotesMainViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F8D6482CEE0DAC00A4B9E0 /* NotesMainViewTest.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D0DF9FE22CEE096400719C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0A12FFA2CD2073C00E13B18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0A130012CD2073C00E13B18;
+			remoteInfo = introspec;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		D02FBD602CF4435200BFB0E0 /* omvll_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = omvll_config.json; sourceTree = "<group>"; };
+		D02FBD622CF4787600BFB0E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D03EF4712CEF0F0900CCCD38 /* omvll.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = omvll.yml; sourceTree = "<group>"; };
+		D03EF4722CEF0F0900CCCD38 /* omvil-config.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = "omvil-config.py"; sourceTree = "<group>"; };
 		D0404A6B2CEB317400768957 /* FetchNotesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNotesUseCase.swift; sourceTree = "<group>"; };
 		D0404A6D2CEB318200768957 /* SaveNoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNoteUseCase.swift; sourceTree = "<group>"; };
 		D0404A6F2CEB318F00768957 /* UpdateNoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNoteUseCase.swift; sourceTree = "<group>"; };
@@ -71,10 +91,20 @@
 		D0D344C62CD248510058467C /* NoteTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewModel.swift; sourceTree = "<group>"; };
 		D0D344C82CD24A710058467C /* DBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConstants.swift; sourceTree = "<group>"; };
 		D0D344CB2CD24AEA0058467C /* PathFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFactory.swift; sourceTree = "<group>"; };
+		D0DF9FDC2CEE096400719C62 /* introspecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = introspecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DF9FE02CEE096400719C62 /* introspecUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introspecUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D0F8D6482CEE0DAC00A4B9E0 /* NotesMainViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D0A12FFF2CD2073C00E13B18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DF9FD92CEE096400719C62 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -111,7 +141,12 @@
 		D0A12FF92CD2073C00E13B18 = {
 			isa = PBXGroup;
 			children = (
+				D02FBD622CF4787600BFB0E0 /* Config.xcconfig */,
+				D03EF4722CEF0F0900CCCD38 /* omvil-config.py */,
+				D02FBD602CF4435200BFB0E0 /* omvll_config.json */,
+				D03EF4712CEF0F0900CCCD38 /* omvll.yml */,
 				D0A130042CD2073C00E13B18 /* introspec */,
+				D0DF9FDD2CEE096400719C62 /* introspecUITests */,
 				D0A130032CD2073C00E13B18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A130022CD2073C00E13B18 /* introspec.app */,
+				D0DF9FDC2CEE096400719C62 /* introspecUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +253,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D0DF9FDD2CEE096400719C62 /* introspecUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D0DF9FE02CEE096400719C62 /* introspecUITestsLaunchTests.swift */,
+				D0F8D6482CEE0DAC00A4B9E0 /* NotesMainViewTest.swift */,
+			);
+			path = introspecUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,6 +282,24 @@
 			productReference = D0A130022CD2073C00E13B18 /* introspec.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D0DF9FDB2CEE096400719C62 /* introspecUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0DF9FE42CEE096400719C62 /* Build configuration list for PBXNativeTarget "introspecUITests" */;
+			buildPhases = (
+				D0DF9FD82CEE096400719C62 /* Sources */,
+				D0DF9FD92CEE096400719C62 /* Frameworks */,
+				D0DF9FDA2CEE096400719C62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0DF9FE32CEE096400719C62 /* PBXTargetDependency */,
+			);
+			name = introspecUITests;
+			productName = introspecUITests;
+			productReference = D0DF9FDC2CEE096400719C62 /* introspecUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,6 +312,10 @@
 				TargetAttributes = {
 					D0A130012CD2073C00E13B18 = {
 						CreatedOnToolsVersion = 15.3;
+					};
+					D0DF9FDB2CEE096400719C62 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = D0A130012CD2073C00E13B18;
 					};
 				};
 			};
@@ -266,6 +333,7 @@
 			projectRoot = "";
 			targets = (
 				D0A130012CD2073C00E13B18 /* introspec */,
+				D0DF9FDB2CEE096400719C62 /* introspecUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -275,9 +343,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02FBD612CF4435200BFB0E0 /* omvll_config.json in Resources */,
 				D0A1302C2CD20D3400E13B18 /* sample_data.json in Resources */,
 				D0A1300D2CD2073D00E13B18 /* Preview Assets.xcassets in Resources */,
+				D03EF4742CEF0F0900CCCD38 /* omvil-config.py in Resources */,
 				D0A1300A2CD2073D00E13B18 /* Assets.xcassets in Resources */,
+				D02FBD632CF478AD00BFB0E0 /* Config.xcconfig in Resources */,
+				D03EF4732CEF0F0900CCCD38 /* omvll.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DF9FDA2CEE096400719C62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,11 +397,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0DF9FD82CEE096400719C62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DF9FE12CEE096400719C62 /* introspecUITestsLaunchTests.swift in Sources */,
+				D0F8D6492CEE0DAC00A4B9E0 /* NotesMainViewTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0DF9FE32CEE096400719C62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0A130012CD2073C00E13B18 /* introspec */;
+			targetProxy = D0DF9FE22CEE096400719C62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D0A1300E2CD2073D00E13B18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -386,6 +483,7 @@
 		};
 		D0A1300F2CD2073D00E13B18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -442,12 +540,15 @@
 		};
 		D0A130112CD2073D00E13B18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"introspec/Preview Content\"";
 				DEVELOPMENT_TEAM = N4YAVL554H;
 				ENABLE_PREVIEWS = YES;
@@ -462,6 +563,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_CFLAGS[arch=*]" = (
+					"-fpass-plugin=/Users/pranjalbhumij/Projects/O-MVLL/o-mvll/build/libOMVLL.dylib",
+					"-fno-legacy-pass-manager",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fpass-plugin=/Users/pranjalbhumij/Projects/O-MVLL/o-mvll/build/libOMVLL.dylib",
+					"$(OTHER_CFLAGS)",
+					"-fno-legacy-pass-manager",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.caring.introspec;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -473,12 +583,15 @@
 		};
 		D0A130122CD2073D00E13B18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"introspec/Preview Content\"";
 				DEVELOPMENT_TEAM = N4YAVL554H;
 				ENABLE_PREVIEWS = YES;
@@ -502,6 +615,38 @@
 			};
 			name = Release;
 		};
+		D0DF9FE52CEE096400719C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.introspecUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = introspec;
+			};
+			name = Debug;
+		};
+		D0DF9FE62CEE096400719C62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.introspecUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = introspec;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -519,6 +664,15 @@
 			buildConfigurations = (
 				D0A130112CD2073D00E13B18 /* Debug */,
 				D0A130122CD2073D00E13B18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0DF9FE42CEE096400719C62 /* Build configuration list for PBXNativeTarget "introspecUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DF9FE52CEE096400719C62 /* Debug */,
+				D0DF9FE62CEE096400719C62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

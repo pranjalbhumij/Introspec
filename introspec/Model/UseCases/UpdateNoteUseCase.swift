@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol UpdateNoteUseCase {
-    func execute(note: Note)
+    func execute(note: Note) -> AnyPublisher<Void, Error>
 }
