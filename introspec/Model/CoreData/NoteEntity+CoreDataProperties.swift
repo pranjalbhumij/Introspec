@@ -23,11 +23,11 @@ extension NoteEntity {
     @NSManaged public var title: String?
     
     func update(with note: Note, context: NSManagedObjectContext) {
-        self.content = note.content
         self.dateCreation = note.dateCreation.toDate()
         self.dateModified = note.dateModified.toDate()
         self.id = note.id
         self.title = note.content.toTitle()
+        self.content = note.content
     }
     
     func toNote() -> Note {

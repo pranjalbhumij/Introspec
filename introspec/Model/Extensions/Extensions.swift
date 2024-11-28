@@ -9,15 +9,25 @@ import Foundation
 
 extension String {
     func formattedDate() -> String {
-        let isoFormatter = ISO8601DateFormatter()
-        isoFormatter.formatOptions = [.withInternetDateTime]
-        guard let date = isoFormatter.date(from: self) else { return self }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        return dateFormatter.string(from: date)
-    }
+            let isoFormatter = ISO8601DateFormatter()
+            isoFormatter.formatOptions = [.withInternetDateTime]
+            
+            if let date = isoFormatter.date(from: self) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                return dateFormatter.string(from: date)
+            }
+            
+            let fallbackFormatter = DateFormatter()
+            fallbackFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            if let fallbackDate = fallbackFormatter.date(from: self) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                return dateFormatter.string(from: fallbackDate)
+            }
+            
+            return self
+        }
 }
 
 
@@ -31,9 +41,10 @@ extension String {
     }
     
     func toTitle(wordLimit: Int = 5) -> String {
-        let words = self.split(separator: " ")
-        let limitedWords = words.prefix(wordLimit)
-        return limitedWords.joined(separator: " ")
+        let words = self.split(separator: "\n")
+//        let limitedWords = words.prefix(wordLimit)
+//        return limitedWords.joined(separator: " ")
+        return String(words[0])
     }
 }
 

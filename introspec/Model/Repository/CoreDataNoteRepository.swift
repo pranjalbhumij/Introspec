@@ -10,7 +10,6 @@ import CoreData
 import Combine
 
 class CoreDataNoteRepository: NoteRepository {
-    
     private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext) {
@@ -61,6 +60,18 @@ class CoreDataNoteRepository: NoteRepository {
                     try self!.saveContext()
                     promise(.success(()))
                 }
+            })
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func search(predicate: String) -> AnyPublisher<[Note], any Error> {
+        Future { [weak self] promise in
+            promise(Result {
+                let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "content CONTAINS[cd] %@", predicate)
+                let results = try self!.context.fetch(fetchRequest)
+                return results.map { $0.toNote() }
             })
         }
         .eraseToAnyPublisher()

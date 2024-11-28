@@ -13,13 +13,17 @@ struct NoteRowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text(note.title).font(.headline)
+                .foregroundColor(.primaryText)
             HStack {
-                Text(note.title).font(.headline)
-                    .foregroundColor(.primaryText)
+                Text(note.dateModified.formattedDate()).font(.subheadline)
+                    .foregroundColor(.secondaryText)
+                Text(removeTitle(note.content))
+                    .font(.subheadline)
+                        .foregroundColor(.secondaryText)
+                        .lineLimit(1)
+                                .truncationMode(.tail)
             }
-            Text(note.dateModified.formattedDate()).font(.caption)
-                .foregroundColor(.secondaryText)
-            
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .contextMenu {
@@ -30,13 +34,23 @@ struct NoteRowView: View {
             }
         }
     }
+    
+    private func removeTitle(_ content: String) -> String {
+        var newContent = ""
+        if let titleRange = content.range(of: note.title) {
+            newContent = content.replacingCharacters(in: titleRange, with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            newContent = content
+        }
+        return newContent
+    }
 }
 
 #Preview {
     let mockNote = Note(
             id: "1",
             title: "Sample Note Title",
-            content: "This is the content of the sample note.",
+            content: "Sample Note Title\n This is the content of the sample note",
             dateCreation: "2024-11-01",
             dateModified: "2024-11-15"
         )

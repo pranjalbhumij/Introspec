@@ -27,9 +27,11 @@ struct NoteTableView: View {
                 }
                 else
                 {
+                    SearchView()
                     showList
                 }
             }
+            .background(Color("offWhiteBackground"))
             .navigationTitle("Notes")
             .navigationDestination(isPresented: $isNewNote) {
                 newNote
@@ -49,7 +51,7 @@ struct NoteTableView: View {
     private var showEmptyScreen: some View {
         EmptyViewScreen(onAction: {
             self.isNewNote = true
-         })
+        })
     }
     
     private var showList: some View {
@@ -68,7 +70,11 @@ struct NoteTableView: View {
                         .foregroundColor(Color("primaryText"))
                     ) {
                         ForEach(notes, id: \.id) { note in
-                            NavigationLink(value: note) {
+                            ZStack {
+                                NavigationLink(value: note) {
+                                    EmptyView()
+                                }
+                                .opacity(0)
                                 NoteRowView(note: .constant(note), onDelete: { viewModel.deleteNote(id: note.id) })
                                     .frame(height: 45)
                             }
@@ -77,7 +83,6 @@ struct NoteTableView: View {
                 }
             }
         }
-        .background(Color("offWhiteBackground"))
         .scrollContentBackground(.hidden)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -107,7 +112,7 @@ struct NoteTableView: View {
     }
     
     private func editNote(_ note: Note) -> some View {
-       return NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
+        return NoteEditorView(note: note, isNewNote: false, onUpdate: { note in
             viewModel.updateNote(note: note)
         })
     }
@@ -135,7 +140,7 @@ struct NoteTableView: View {
                 }
             }
         }
-
+        
         // Sort notes within each group by date and time (descending)
         for key in groupedNotes.keys {
             groupedNotes[key]?.sort { note1, note2 in

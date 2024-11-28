@@ -23,12 +23,11 @@ struct NoteEditorView: View {
     
     var body: some View {
         ZStack {
-            Color(.offWhiteBackground)
+            Color("editorBackground")
                 .ignoresSafeArea()
             
             VStack (alignment: .leading) {
                 CustomTextEditor(text: $note.content)
-                    .background(Color(.offWhiteBackground))
                     .cornerRadius(8)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .accessibilityIdentifier("TextEditorView")
