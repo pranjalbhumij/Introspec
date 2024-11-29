@@ -10,13 +10,19 @@ import SwiftUI
 struct NoteTableView: View {
     @StateObject var viewModel: NoteTableViewModel
     @State private var isNewNote = false
+    @State private var showSearchView = false
+    @State private var searchText = ""
     
     public init(viewModel: NoteTableViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var groupedNotes: [String: [Note]] {
-        groupNotesByDate(notes: viewModel.notes)
+        groupNotesByDate(
+            notes: viewModel.notes.filter { note in
+                searchText.isEmpty || note.title.localizedCaseInsensitiveContains(searchText) || note.content.localizedCaseInsensitiveContains(searchText)
+            }
+        )
     }
     
     var body: some View {
@@ -27,7 +33,6 @@ struct NoteTableView: View {
                 }
                 else
                 {
-                    SearchView()
                     showList
                 }
             }
@@ -45,6 +50,7 @@ struct NoteTableView: View {
         } detail: {
             Text("Select a note")
         }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .tint(Color("toolbarColor"))
     }
     

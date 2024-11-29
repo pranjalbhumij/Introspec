@@ -60,6 +60,10 @@ struct CustomTextEditor: UIViewRepresentable {
             self.parent = parent
         }
         
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            textView.addDoneButtonOnKeyboard()
+        }
+        
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }

@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchBarView: View {
+    var onSearchBarTap: () -> Void
+    
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -24,9 +26,12 @@ struct SearchView: View {
         .background( RoundedRectangle(cornerRadius: 10)
             .fill(Color.gray.opacity(0.2)))
         .padding(.horizontal)
+        .onTapGesture {
+            onSearchBarTap()
+        }
     }
 }
 
 #Preview {
-    SearchView()
+    SearchBarView(onSearchBarTap: {} )
 }

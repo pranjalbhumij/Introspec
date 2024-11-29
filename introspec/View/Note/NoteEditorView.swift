@@ -39,7 +39,9 @@ struct NoteEditorView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Done") {
                     if isNewNote {
-                        onSave!(note)
+                        if !note.content.isEmpty{
+                            onSave!(note)
+                        }
                     } else {
                         onUpdate!(note)
                     }

@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D02F3A742CF5BAB9002BA676 /* EmptyViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F3A732CF5BAB9002BA676 /* EmptyViewScreen.swift */; };
-		D02F3A762CF702EE002BA676 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F3A752CF702EE002BA676 /* SearchView.swift */; };
+		D02F3A762CF702EE002BA676 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F3A752CF702EE002BA676 /* SearchBarView.swift */; };
+		D02F3A792CF98FCF002BA676 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02F3A782CF98FCF002BA676 /* SearchView.swift */; };
 		D02FBD612CF4435200BFB0E0 /* omvll_config.json in Resources */ = {isa = PBXBuildFile; fileRef = D02FBD602CF4435200BFB0E0 /* omvll_config.json */; };
 		D02FBD632CF478AD00BFB0E0 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D02FBD622CF4787600BFB0E0 /* Config.xcconfig */; };
 		D03EF4732CEF0F0900CCCD38 /* omvll.yml in Resources */ = {isa = PBXBuildFile; fileRef = D03EF4712CEF0F0900CCCD38 /* omvll.yml */; };
@@ -59,7 +60,8 @@
 
 /* Begin PBXFileReference section */
 		D02F3A732CF5BAB9002BA676 /* EmptyViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewScreen.swift; sourceTree = "<group>"; };
-		D02F3A752CF702EE002BA676 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D02F3A752CF702EE002BA676 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		D02F3A782CF98FCF002BA676 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D02FBD602CF4435200BFB0E0 /* omvll_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = omvll_config.json; sourceTree = "<group>"; };
 		D02FBD622CF4787600BFB0E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D03EF4712CEF0F0900CCCD38 /* omvll.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = omvll.yml; sourceTree = "<group>"; };
@@ -118,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D02F3A772CF98F0B002BA676 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D02F3A752CF702EE002BA676 /* SearchBarView.swift */,
+				D02F3A782CF98FCF002BA676 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		D0404A6A2CEB316200768957 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +237,6 @@
 				D0A130392CD21A6B00E13B18 /* Note */,
 				D0A130072CD2073C00E13B18 /* ContentView.swift */,
 				D02F3A732CF5BAB9002BA676 /* EmptyViewScreen.swift */,
-				D02F3A752CF702EE002BA676 /* SearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,6 +244,7 @@
 		D0A130392CD21A6B00E13B18 /* Note */ = {
 			isa = PBXGroup;
 			children = (
+				D02F3A772CF98F0B002BA676 /* Search */,
 				D0A1302D2CD20DC300E13B18 /* NoteRowView.swift */,
 				D0A130372CD2176A00E13B18 /* NoteTableView.swift */,
 				D0A1303A2CD21A8F00E13B18 /* NoteEditorView.swift */,
@@ -376,13 +387,14 @@
 				D0A130082CD2073C00E13B18 /* ContentView.swift in Sources */,
 				D0A130282CD20BF400E13B18 /* DiaryDataModel.xcdatamodeld in Sources */,
 				D0A130302CD20F6500E13B18 /* ModelData.swift in Sources */,
-				D02F3A762CF702EE002BA676 /* SearchView.swift in Sources */,
+				D02F3A762CF702EE002BA676 /* SearchBarView.swift in Sources */,
 				D0404A752CEB320E00768957 /* NoteRepository.swift in Sources */,
 				D0404A722CEB319A00768957 /* DeleteNoteUseCase.swift in Sources */,
 				D0A130382CD2176A00E13B18 /* NoteTableView.swift in Sources */,
 				D0A1303B2CD21A8F00E13B18 /* NoteEditorView.swift in Sources */,
 				D0A130222CD20BCA00E13B18 /* UnitOfWork.swift in Sources */,
 				D0404A6C2CEB317400768957 /* FetchNotesUseCase.swift in Sources */,
+				D02F3A792CF98FCF002BA676 /* SearchView.swift in Sources */,
 				D0404A6E2CEB318200768957 /* SaveNoteUseCase.swift in Sources */,
 				D02F3A742CF5BAB9002BA676 /* EmptyViewScreen.swift in Sources */,
 				D0404A7D2CEB335700768957 /* UpdateNoteUseCaseImpl.swift in Sources */,
